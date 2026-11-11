@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eiweiß-Tagebuch – Anleitung</title>
+<meta name="description" content="Kurzanleitung mit Bildern: einrichten, Essen eintragen, Lebensmittel pflegen, zu zweit nutzen.">
+<link rel="icon" href="img/icon.png">
+<style>
+  :root {
+    --primary: #1f6fb2; --primary-dark: #174f80; --primary-soft: #d7e6f4;
+    --ink: #18222d; --muted: #5b6773; --bg: #f3f5f7; --card: #fff; --border: #dde3e8;
+    --warn: #c2410c; --live: #2f8a45; --tip: #eaf3ea; --tip-b: #b9d8bf;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --primary: #6aa9e0; --primary-dark: #9cc7ee; --primary-soft: #1d3550;
+      --ink: #e6ebf0; --muted: #9aa6b2; --bg: #11161c; --card: #1a2129; --border: #2c3640;
+      --warn: #f08a55; --live: #5cc277; --tip: #16281b; --tip-b: #2e5236;
+    }
+  }
+  :root[data-theme="dark"] {
+    --primary: #6aa9e0; --primary-dark: #9cc7ee; --primary-soft: #1d3550;
+    --ink: #e6ebf0; --muted: #9aa6b2; --bg: #11161c; --card: #1a2129; --border: #2c3640;
+    --warn: #f08a55; --live: #5cc277; --tip: #16281b; --tip-b: #2e5236;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  a { color: var(--primary); }
+
+  .hero { background: #1f6fb2; color: #fff; padding: 32px 16px 48px; text-align: center; }
+  .hero img { width: 96px; height: 96px; background: #fff; border-radius: 50%; padding: 6px; }
+  .hero h1 { margin: 10px 0 4px; font-size: clamp(28px, 7vw, 42px); line-height: 1.15; }
+  .hero p { margin: 0 auto; max-width: 28em; opacity: .92; }
+
+  .wrap { max-width: 1000px; margin: -24px auto 0; padding: 0 16px 48px; }
+
+  details.toc { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 12px 16px; margin-bottom: 16px; }
+  details.toc summary { font-weight: 700; cursor: pointer; }
+  details.toc ol { margin: 8px 0 4px; padding-left: 22px; columns: 2 200px; }
+  details.toc li { margin: 3px 0; }
+  details.toc a { text-decoration: none; color: var(--ink); }
+
+  section { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 20px 16px; margin-bottom: 16px; }
+  @media (min-width: 720px) { section { padding: 28px 32px; } }
+  h2 { margin: 0 0 4px; font-size: 23px; line-height: 1.25; display: flex; align-items: center; gap: 10px; }
+  h2 .num { flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: var(--card); font-size: 16px; }
+  h3 { font-size: 18px; margin: 20px 0 4px; }
+  .lead { color: var(--muted); margin: 0 0 8px; }
+
+  /* Text + Bilder: am Handy untereinander, Bilder nebeneinander */
+  .step { display: grid; gap: 14px; margin-top: 16px; align-items: start; }
+  @media (min-width: 720px) { .step { grid-template-columns: 1fr auto; gap: 28px; } }
+  .step > div > :first-child { margin-top: 0; }
+  .shots { display: flex; gap: 12px; justify-content: center; }
+  .shots figure { flex: 1 1 0; max-width: 240px; min-width: 0; }
+  @media (min-width: 720px) { .shots figure { width: 220px; flex: none; } }
+  figure { margin: 0; text-align: center; }
+  figure img {
+    display: block; width: 100%; height: auto; border-radius: 18px;
+    border: 5px solid #1c232b; background: #1c232b; box-shadow: 0 4px 16px rgba(0,0,0,.14); cursor: zoom-in;
+  }
+  figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.35; }
+
+  ol.flow { counter-reset: s; list-style: none; padding: 0; margin: 8px 0; }
+  ol.flow > li { counter-increment: s; position: relative; padding-left: 36px; margin: 8px 0; }
+  ol.flow > li::before {
+    content: counter(s); position: absolute; left: 0; top: 1px; width: 25px; height: 25px; border-radius: 50%;
+    display: grid; place-items: center; background: var(--primary-soft); color: var(--primary-dark); font-weight: 700; font-size: 14px;
+  }
+  ul { padding-left: 20px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  .btn { background: var(--primary-soft); color: var(--primary-dark); border-radius: 6px; padding: 0 6px; font-weight: 600; white-space: nowrap; }
+  .tip { background: var(--tip); border: 1px solid var(--tip-b); border-radius: 12px; padding: 10px 14px; margin: 12px 0 0; }
+  .warn { color: var(--warn); font-weight: 700; }
+  .live { color: var(--live); font-weight: 700; }
+
+  dl.faq dt { font-weight: 700; margin-top: 12px; }
+  dl.faq dd { margin: 2px 0 0; }
+
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 0 16px 32px; }
+
+  dialog.zoom { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 96vh; }
+  dialog.zoom::backdrop { background: rgba(0,0,0,.85); }
+  dialog.zoom img { display: block; max-height: 92vh; max-width: 96vw; border-radius: 16px; cursor: zoom-out; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="img/icon.png" alt="">
+  <h1>Eiweiß-Tagebuch</h1>
+  <p>Gemeinsam eintragen, gemeinsam den Überblick behalten. Die Kurzanleitung.</p>
+</header>
+
+<div class="wrap">
+  <details class="toc">
+    <summary>Inhalt</summary>
+    <ol>
+      <li><a href="#start">Einrichten</a></li>
+      <li><a href="#einladen">Zweites Elternteil</a></li>
+      <li><a href="#heute">Heute-Übersicht</a></li>
+      <li><a href="#eintragen">Essen eintragen</a></li>
+      <li><a href="#zeit">Nachtragen &amp; vorplanen</a></li>
+      <li><a href="#schaetzen">Schätzessen</a></li>
+      <li><a href="#portion">Portionsgerichte</a></li>
+      <li><a href="#aendern">Ändern, löschen, kopieren</a></li>
+      <li><a href="#lebensmittel">Lebensmittel</a></li>
+      <li><a href="#familie">Familie &amp; Limit</a></li>
+      <li><a href="#faq">Gut zu wissen</a></li>
+    </ol>
+  </details>
+
+  <section id="start">
+    <h2><span class="num">1</span>Einrichten</h2>
+    <p class="lead">Einmalig, nur ein Elternteil.</p>
+    <div class="step">
+      <ol class="flow">
+        <li><span class="btn">Konto anlegen</span>: Name, E-Mail, Passwort.</li>
+        <li>Name des Kindes und <strong>Tageslimit Eiweiß</strong> (g) eingeben.</li>
+        <li><span class="btn">Kind anlegen</span>, fertig.</li>
+      </ol>
+      <div class="shots">
+        <figure><img src="img/register.webp" alt="Konto anlegen" loading="lazy" width="600" height="1333"><figcaption>Konto anlegen</figcaption></figure>
+        <figure><img src="img/setup.webp" alt="Kind anlegen" loading="lazy" width="600" height="1333"><figcaption>Kind anlegen</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="einladen">
+    <h2><span class="num">2</span>Zweites Elternteil</h2>
+    <p class="lead">Beide tragen ins selbe Tagebuch ein und sehen alles live.</p>
+    <div class="step">
+      <ol class="flow">
+        <li><strong>A:</strong> <span class="btn">Familie</span> → <span class="btn">Einladungscode erstellen</span> → Code weitergeben.</li>
+        <li><strong>B:</strong> eigenes Konto anlegen, Code bei <em>Einladung bekommen?</em> eingeben → <span class="btn">Beitreten</span>.</li>
+      </ol>
+      <div class="shots">
+        <figure><img src="img/family-invite.webp" alt="Einladungscode erstellt" loading="lazy" width="600" height="1333"><figcaption>A: Code erstellen</figcaption></figure>
+        <figure><img src="img/setup-code.webp" alt="Code eingeben" loading="lazy" width="600" height="1333"><figcaption>B: Code eingeben</figcaption></figure>
+      </div>
+    </div>
+    <p class="tip">Der Code gilt 48 Stunden und nur einmal.</p>
+  </section>
+
+  <section id="heute">
+    <h2><span class="num">3</span>Heute-Übersicht</h2>
+    <p class="lead">Der Startbildschirm.</p>
+    <div class="step">
+      <ul>
+        <li><strong>Ring:</strong> gegessen von Limit, ab 90&nbsp;% <span class="warn">orange</span>.</li>
+        <li><strong>Noch übrig:</strong> was heute noch geht.</li>
+        <li><strong>Einträge</strong> nach Mahlzeit, mit Namen, wer eingetragen hat.</li>
+        <li><strong>‹ ›</strong> Tage blättern, aufs Datum tippen = zurück zu heute.</li>
+        <li><span class="live">● Live</span> = verbunden. <em>Offline</em> = wird später übertragen.</li>
+      </ul>
+      <div class="shots">
+        <figure><img src="img/today.webp" alt="Heute-Übersicht" loading="lazy" width="600" height="1333"><figcaption>6,8 von 12 g gegessen</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="eintragen">
+    <h2><span class="num">4</span>Essen eintragen</h2>
+    <p class="lead">Meist drei Taps.</p>
+    <div class="step">
+      <ol class="flow">
+        <li><span class="btn">+ Essen eintragen</span></li>
+        <li>Kategorie antippen oder oben suchen.</li>
+      </ol>
+      <div class="shots">
+        <figure><img src="img/add-categories.webp" alt="Kategorien" loading="lazy" width="600" height="1333"><figcaption>Kategorien</figcaption></figure>
+        <figure><img src="img/add-search.webp" alt="Suche" loading="lazy" width="600" height="1333"><figcaption>Suche</figcaption></figure>
+      </div>
+    </div>
+    <div class="step">
+      <ol class="flow" start="3" style="counter-reset: s 2">
+        <li>Lebensmittel antippen. Menge per Schnelltaste, Schieber oder Eingabe. Bei Spannen (z.&nbsp;B. 3,5–3,8&nbsp;g) den Wert wählen.</li>
+        <li><span class="btn">✓ eintragen</span></li>
+      </ol>
+      <div class="shots">
+        <figure><img src="img/portion.webp" alt="Portion wählen" loading="lazy" width="600" height="1333"><figcaption>Unten: was danach übrig bleibt</figcaption></figure>
+      </div>
+    </div>
+    <ul>
+      <li>Favoriten ★ und Häufiges stehen oben.</li>
+      <li>Die Mahlzeit ergibt sich aus der Uhrzeit.</li>
+      <li><strong>Barcode:</strong> Symbol im Suchfeld. Unbekannte Produkte werden bei Open Food Facts nachgeschlagen.</li>
+    </ul>
+  </section>
+
+  <section id="zeit">
+    <h2><span class="num">5</span>Nachtragen &amp; vorplanen</h2>
+    <div class="step">
+      <div>
+        <p>Oben bei <strong>Wann</strong> Tag und Uhrzeit antippen und ändern, z.&nbsp;B. das Mittagessen abends nachtragen.</p>
+        <p>Geht bis zu 7 Tage im Voraus. Mit <strong>›</strong> in der Übersicht seht ihr den nächsten Tag.</p>
+      </div>
+      <div class="shots">
+        <figure><img src="img/portion-fixed.webp" alt="Uhrzeit geändert" loading="lazy" width="600" height="1333"><figcaption>Uhrzeit 07:30</figcaption></figure>
+        <figure><img src="img/date-picker.webp" alt="Kalender" loading="lazy" width="600" height="1333"><figcaption>Tag wählen</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="schaetzen">
+    <h2><span class="num">6</span>Schätzessen</h2>
+    <p class="lead">Für Unbekanntes, z.&nbsp;B. Kuchen bei Oma.</p>
+    <div class="step">
+      <ol class="flow">
+        <li>Kachel <strong>Schätzessen</strong>.</li>
+        <li>Optional: was es war.</li>
+        <li>Eiweiß schätzen (0–10&nbsp;g).</li>
+        <li>Optional: Menge als Notiz, zählt nicht mit.</li>
+      </ol>
+      <div class="shots">
+        <figure><img src="img/estimate.webp" alt="Schätzessen" loading="lazy" width="600" height="1333"><figcaption>Geschätzt 2 g</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="portion">
+    <h2><span class="num">7</span>Portionsgerichte</h2>
+    <div class="step">
+      <div>
+        <p>Für vorab ausgerechnete Gerichte, z.&nbsp;B. <em>Müsli mit Milch = 1&nbsp;g pro Portion</em>.</p>
+        <p>Beim Eintragen nur die Anzahl wählen. Anlegen: Lebensmittel mit Einheit <strong>Portion</strong>.</p>
+      </div>
+      <div class="shots">
+        <figure><img src="img/portion-dish.webp" alt="Portionsgericht" loading="lazy" width="600" height="1333"><figcaption>1 Portion = 1 g</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="aendern">
+    <h2><span class="num">8</span>Ändern, löschen, kopieren</h2>
+    <div class="step">
+      <ul>
+        <li><strong>Antippen:</strong> bearbeiten, auch Mahlzeit und Tag.</li>
+        <li><strong>← Nach links wischen:</strong> löschen.</li>
+        <li><strong>→ Nach rechts wischen:</strong> auf morgen kopieren, z.&nbsp;B. das übliche Frühstück.</li>
+      </ul>
+      <div class="shots">
+        <figure><img src="img/swipe-left.webp" alt="Nach links wischen zum Löschen" loading="lazy" width="600" height="1333"><figcaption>← löschen</figcaption></figure>
+        <figure><img src="img/swipe-right.webp" alt="Nach rechts wischen zum Kopieren" loading="lazy" width="600" height="1333"><figcaption>→ kopieren</figcaption></figure>
+      </div>
+    </div>
+    <p class="tip">Vorher kommt immer eine Rückfrage, danach gibt es noch <span class="btn">Rückgängig</span>.</p>
+  </section>
+
+  <section id="lebensmittel">
+    <h2><span class="num">9</span>Lebensmittel</h2>
+    <p class="lead">Rund 110 sind schon drin. Gilt für die ganze Familie.</p>
+    <div class="step">
+      <ul>
+        <li><strong>★</strong> = Favorit, steht beim Eintragen oben.</li>
+        <li><span class="btn">+ Neu</span> oder antippen zum Bearbeiten.</li>
+        <li>Per <strong>Barcode</strong> oder <strong>Foto der Nährwerttabelle</strong> automatisch ausfüllen.</li>
+        <li>Eiweiß als festen Wert oder Spanne, eigene Portionsgrößen als Schnelltasten.</li>
+      </ul>
+      <div class="shots">
+        <figure><img src="img/foods.webp" alt="Lebensmittel-Liste" loading="lazy" width="600" height="1333"><figcaption>Liste</figcaption></figure>
+        <figure><img src="img/food-edit.webp" alt="Lebensmittel bearbeiten" loading="lazy" width="600" height="1333"><figcaption>Bearbeiten</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="familie">
+    <h2><span class="num">10</span>Familie &amp; Limit</h2>
+    <div class="step">
+      <ul>
+        <li><strong>Tageslimit</strong> mit −/+ ändern. Gilt ab heute, alte Tage bleiben.</li>
+        <li>Eltern sehen, einladen, weiteres Kind anlegen.</li>
+        <li>Mehrere Kinder: in der Übersicht oben auf den Namen tippen.</li>
+      </ul>
+      <div class="shots">
+        <figure><img src="img/family2.webp" alt="Familie" loading="lazy" width="600" height="1333"><figcaption>Familie</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2><span class="num">11</span>Gut zu wissen</h2>
+    <dl class="faq">
+      <dt>Was zählt?</dt>
+      <dd>Nur natürliches Eiweiß. Keine Spezialnahrung.</dd>
+      <dt>Wann beginnt ein neuer Tag?</dt>
+      <dd>Um Mitternacht.</dd>
+      <dt>Ohne Internet?</dt>
+      <dd>Weiter eintragen, wird später übertragen.</dd>
+      <dt>Woher kommen die Werte?</dt>
+      <dd>Herstellerangaben bzw. Durchschnitt. Im Zweifel gilt die Packung.</dd>
+    </dl>
+  </section>
+</div>
+
+<footer>Screenshots mit Beispieldaten · Bild antippen zum Vergrößern</footer>
+
+<dialog class="zoom" id="zoom"><img alt=""></dialog>
+<script>
+  const dlg = document.getElementById('zoom'), big = dlg.querySelector('img');
+  document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+    big.src = img.src; big.alt = img.alt; if (dlg.showModal) dlg.showModal();
+  }));
+  dlg.addEventListener('click', () => dlg.close());
+</script>
+</body>
+</html>
